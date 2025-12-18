@@ -5,4 +5,4 @@ def count_items(somearr):
         return 0
     else:
         return 1 + count_items(somearr[1:])
-print(count_items(somearr))
+print(f'{count_items(somearr)} элементов в массиве')
