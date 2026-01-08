@@ -80,7 +80,7 @@ class Map: # инициализация класса для карты стан�
 
             path.reverse()
 
-            return f'Маршрут от {start_station} до {end_station}: {' -> '.join(path)}\nПотрачено энергии: {costs[end_station]}'
+            return f'Маршрут от {start_station} до {end_station}: {' -> '.join(path)}\n Потрачено энергии: {costs[end_station]}'
 
 
     @classmethod
