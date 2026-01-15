@@ -1,5 +1,4 @@
 # Алгоритм Дейкстры. Поиск самого "дешевого" пути.
-from collections import deque
 
 graph = {}
 parents = {}
