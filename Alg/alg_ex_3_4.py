@@ -1,14 +1,24 @@
 # рекурсия 5
-box = [10, 20, 30, 7]
-key = 25
-def findkey(box, key):
-    if len(box) == 0:
-        return False
-    firstelem = box[0]
-    restelem = box[1:]
-    if firstelem == key:
-        return True
-    else:
-        firstelem = findkey(restelem, key)
-        return firstelem
-print(findkey(box, key))
+class KeyFinder:
+    def __init__(self, box):
+        self.box = box
+
+    def find_key(self, key, box=None):
+        if box is None:
+            box = self.box
+
+        if len(box) == 0:
+            return False
+        
+        first_elem = box[0]
+        rest_elem = box[1:]
+        if first_elem == key:
+            return True
+        else:
+            return self.find_key(key, rest_elem)
+
+if __name__ == '__main__':
+    box = [10, 20, 30, 7]
+    key = 25
+    finder = KeyFinder(box)
+    print(finder.find_key(key))

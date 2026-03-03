@@ -1,33 +1,36 @@
-#бинарный поиск
-import random
-nlist = [] # создал пустой массив для чисел
-for _ in range(30): # цикл заполнения массива рандомными положительными числами от 1 до 800 в количестве 30шт.
-    nlist.append(random.randint(1, 800))
+from random import randint, choice
 
-# Ниже - аналогичный способ заполнения массива числами при помощи while
+class Random:
+    
+    def __init__(self):
+        self.fill_list()
+        self.guess_num = choice(self.num_list)
 
-# while len(nlist) != 30:
-    # nlist.append(random.randint(1, 800))
+    def fill_list(self):
+        self.num_list = []
+        for _ in range(30):
+            self.num_list.append(randint(1, 800))
+        self.num_list.sort()
 
-nlist.sort() # сортировка списка по возрастанию для имплементации алгоритма бинарного поиска
-print('Массив чисел:', nlist)
-rnum = random.choice(nlist) # рандомно выбираем число из списка
-print ('Число для поиска:', rnum)
-def Findnum(): # объявляю функцию поиска выбранного числа
-    counter = 0
-    low = 0
-    high = len(nlist) - 1
-    while low <= high:
-        mid = (low + high)//2
-        guess = nlist[mid]
-        if guess == rnum:
-            return mid, counter
-        if guess > rnum:
-            counter += 1
-            high = mid - 1
-        else:
-            counter += 1
-            low = mid + 1
-    return guess, counter
-gnum, iternum = Findnum()
-print('Искомое число:', nlist[gnum], 'угадано за:', iternum, 'итераций')
+    @staticmethod
+    def find_num(arr, num):
+        counter = 0
+        low = 0
+        high = len(arr) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            guess = arr[mid]
+            if guess == num:
+                return mid, counter
+            if guess > num:
+                counter += 1
+                high = mid - 1
+            else:
+                counter += 1
+                low = mid + 1
+        return guess, counter
+    
+if __name__ == '__main__':
+    init = Random()
+    res = init.find_num(init.num_list, init.guess_num)
+    print(f'Число {res[0]} угадано за {res[1]} итераций') 
